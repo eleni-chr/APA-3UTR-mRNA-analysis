@@ -82,7 +82,7 @@ When using these scripts, cite all three records once their publication details 
 
 1. **Manuscript:** _Pending publication; link will be provided here upon publication._
 2. **Dataset:** _Pending publication; link will be provided here upon publication._
-3. **Code:** _Pending publication; link will be provided here upon publication._
+3. **Code:** Christoforidou, E. (2026). Alternative Polyadenylation Analysis in ALS-Linked TDP-43M337V Mouse Skeletal Muscle: R Scripts (Version v1.0.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.24374857
 
 ## License and disclaimer
 
