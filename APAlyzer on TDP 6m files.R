@@ -1,15 +1,3 @@
-# Copyright 2026 Dr Eleni Christoforidou
-# SPDX-License-Identifier: Apache-2.0
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-# https://www.apache.org/licenses/LICENSE-2.0
-#
-# The code is provided "AS IS", without guarantees or warranties of any kind.
-# To the extent permitted by law, the copyright holder accepts no responsibility or liability for use of the code or its outputs.
-# See LICENSE for the full warranty disclaimer and limitation of liability.
-# Run from the repository root; generated files are written in the working directory.
 # APAlyzer on TDP 6m files
 # The files were aligned to mm10, so this is the reference genome that is used throughout this script
 # ------------------------------------------------------------------------------
@@ -18,7 +6,12 @@
 rm(list = ls())
 
 
-# Install dependencies once as described in README.md.
+# Install packages
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install("APAlyzer")
+
+
 # Load libraries
 library(APAlyzer)
 library(repmis)
@@ -138,10 +131,6 @@ v <- APAVolcano(test_3UTR,
 v + scale_fill_manual(values = c("blue", "gray", "red")) +
   theme(legend.position = "none")
 
-# Save the plot to a file
-ggsave("APAVolcano_TDP_6m.png", width = 8, height = 6)
-
-
 # Boxplot
 test_3UTR$APAreg <- factor(test_3UTR$APAreg,
                            levels = c("DN", "NC", "UP"),
@@ -172,9 +161,6 @@ b + scale_fill_manual(values = c("blue", "gray", "red")) +
   geom_text(data = counts, 
             aes(x = APAreg, y = ymax + 0.3, label = paste("n =", n)), 
             vjust = 0)
-
-# Save the plot to a file
-ggsave("APABox_TDP_6m.png", width = 8, height = 6)
 
 # IPA
 APAVolcano(test_IPA, PAS='IPA', Pcol = "pvalue", top=5)

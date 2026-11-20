@@ -1,15 +1,3 @@
-# Copyright 2026 Dr Eleni Christoforidou
-# SPDX-License-Identifier: Apache-2.0
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-# https://www.apache.org/licenses/LICENSE-2.0
-#
-# The code is provided "AS IS", without guarantees or warranties of any kind.
-# To the extent permitted by law, the copyright holder accepts no responsibility or liability for use of the code or its outputs.
-# See LICENSE for the full warranty disclaimer and limitation of liability.
-# Run from the repository root; generated files are written in the working directory.
 # Post-APAlyzer analysis - TDP 6m
 
 # Before running this, run the R script "APAlyzer on TDP 6m files"
@@ -550,12 +538,6 @@ p3 <- ggplot(miRNA_detection_df, aes(x = reorder(Category, -Count), y = Count, f
 print(p3)
 ggsave("p3_TDP_6m.svg", plot = p3, width = 8, height = 6, device = "svg")
 
-
-# -------------------------------------------
-# Plot p4 was removed as it is not important.
-# -------------------------------------------
-
-
 # -----------------
 # Prepare some data
 # -----------------
@@ -598,7 +580,7 @@ merged_gene_data_possible2 <- merged_gene_data_possible2 %>%
 # Plot more results
 # -----------------
 
-# 5. Bar plot for gene-miRNA pairs by binding site change due to 3'UTR lengthening
+# 4. Bar plot for gene-miRNA pairs by binding site change due to 3'UTR lengthening
 
 # Filter gene summary for genes with 3'UTR lengthening
 lengthening_gene_summary <- gene_summary[gene_summary$Gene %in% 
@@ -619,7 +601,7 @@ binding_site_df_long <- data.frame(
             summary_counts_long$loss)
 )
 
-p5 <- ggplot(binding_site_df_long, aes(x = Change, y = Count, fill = Change)) +
+p4 <- ggplot(binding_site_df_long, aes(x = Change, y = Count, fill = Change)) +
   geom_bar(stat = "identity") +
   geom_text(aes(label = Count), vjust = -0.5) +
   labs(title = "Gene-miRNA Binding Site Changes\nDue to 3'UTR Lengthening",
@@ -628,11 +610,11 @@ p5 <- ggplot(binding_site_df_long, aes(x = Change, y = Count, fill = Change)) +
   theme_minimal(base_size = 18) +
   theme(legend.position = "none")
 
-print(p5)
-ggsave("p5_TDP_6m.svg", plot = p5, width = 8, height = 6, device = "svg")
+print(p4)
+ggsave("p4_TDP_6m.svg", plot = p4, width = 8, height = 6, device = "svg")
 
 
-# 6. Bar plot for gene-miRNA pairs by binding site change due to 3'UTR shortening
+# 5. Bar plot for gene-miRNA pairs by binding site change due to 3'UTR shortening
 
 # Filter the gene summary (or merged data) to include only genes with 3'UTR shortening.
 short_gene_summary <- gene_summary[gene_summary$Gene %in% 
@@ -659,7 +641,7 @@ binding_site_df_short <- data.frame(
 )
 
 # Plot the bar plot for shortening genes.
-p6 <- ggplot(binding_site_df_short, aes(x = Change, y = Count, fill = Change)) +
+p5 <- ggplot(binding_site_df_short, aes(x = Change, y = Count, fill = Change)) +
   geom_bar(stat = "identity") +
   geom_text(aes(label = Count), vjust = -0.5) +
   labs(title = "Gene-miRNA Binding Site Changes\nDue to 3'UTR Shortening",
@@ -668,11 +650,11 @@ p6 <- ggplot(binding_site_df_short, aes(x = Change, y = Count, fill = Change)) +
   theme_minimal(base_size = 18) +
   theme(legend.position = "none")
 
-print(p6)
-ggsave("p6_TDP_6m.svg", plot = p6, width = 8, height = 6, device = "svg")
+print(p5)
+ggsave("p5_TDP_6m.svg", plot = p5, width = 8, height = 6, device = "svg")
 
 # Create a scatter plot with four trendlines.
-p7 <- ggplot(merged_gene_data_possible, aes(x = RED, y = LFC, color = Group, shape = Group)) +
+p6 <- ggplot(merged_gene_data_possible, aes(x = RED, y = LFC, color = Group, shape = Group)) +
   geom_point(alpha = 0.7, size = 3) +
   geom_smooth(method = "lm", se = TRUE) +
   scale_shape_manual(values = c("Upregulated + 3'UTR lengthening" = 16,   # filled circle
@@ -689,11 +671,11 @@ p7 <- ggplot(merged_gene_data_possible, aes(x = RED, y = LFC, color = Group, sha
   guides(color = guide_legend(nrow = 2, byrow = TRUE),
          shape = guide_legend(nrow = 2, byrow = TRUE))
 
-print(p7)
-ggsave("p7_TDP_6m.svg", plot = p7, width = 8, height = 6, device = "svg")
+print(p6)
+ggsave("p6_TDP_6m.svg", plot = p6, width = 8, height = 6, device = "svg")
 
 # ------------------------------------------------------------------------------
-# Compute Spearman correlation for each composite group (related to plot p7)
+# Compute Spearman correlation for each composite group (related to plot p6)
 cor_results <- merged_gene_data_possible %>%
   group_by(Group) %>%
   summarise(
@@ -710,7 +692,7 @@ lengthening_genes <- merged_gene_data_possible2 %>%
   filter(APA_type == "3'UTR lengthening")
 
 # Create a scatter plot and compute Spearman correlation between net binding site gain (sum_diff) and mRNA LFC.
-p8 <- ggplot(lengthening_genes, aes(x = sum_diff, y = LFC)) +
+p7 <- ggplot(lengthening_genes, aes(x = sum_diff, y = LFC)) +
   geom_point(alpha = 0.7, size = 3) +
   geom_smooth(method = "lm", se = TRUE, color = "blue") +
   labs(title = "Net Binding Site Gain vs mRNA LFC",
@@ -719,11 +701,11 @@ p8 <- ggplot(lengthening_genes, aes(x = sum_diff, y = LFC)) +
        y = "mRNA log2 Fold Change\n(<0: downregulation     >0: upregulation)") +
   theme_minimal(base_size = 18)
 
-print(p8)
-ggsave("p8_TDP_6m.svg", plot = p8, width = 8, height = 6, device = "svg")
+print(p7)
+ggsave("p7_TDP_6m.svg", plot = p7, width = 8, height = 6, device = "svg")
 
 # ------------------------------------------------------------------------------
-# Compute Spearman correlation between binding site loss and mRNA LFC (related to plot p8)
+# Compute Spearman correlation between binding site loss and mRNA LFC (related to plot p7)
 cor_lengthening <- cor.test(lengthening_genes$sum_diff, lengthening_genes$LFC, method = "spearman")
 print(cor_lengthening)
 # ------------------------------------------------------------------------------
@@ -734,7 +716,7 @@ shortening_genes <- merged_gene_data_possible2 %>%
   mutate(lost_diff = abs(-sum_diff))
 
 # Create a scatter plot for binding site loss vs mRNA LFC
-p9 <- ggplot(shortening_genes, aes(x = lost_diff, y = LFC)) +
+p8 <- ggplot(shortening_genes, aes(x = lost_diff, y = LFC)) +
   geom_point(alpha = 0.7, size = 3) +
   geom_smooth(method = "lm", se = TRUE, color = "blue") +
   labs(title = "Net Binding Site Loss vs mRNA LFC",
@@ -743,11 +725,11 @@ p9 <- ggplot(shortening_genes, aes(x = lost_diff, y = LFC)) +
        y = "mRNA log2 Fold Change\n(<0: downregulation     >0: upregulation)") +
   theme_minimal(base_size = 18)
 
-print(p9)
-ggsave("p9_TDP_6m.svg", plot = p9, width = 8, height = 6, device = "svg")
+print(p8)
+ggsave("p8_TDP_6m.svg", plot = p8, width = 8, height = 6, device = "svg")
 
 # ------------------------------------------------------------------------------
-# Compute Spearman correlation between binding site loss and mRNA LFC (related to plot p9)
+# Compute Spearman correlation between binding site loss and mRNA LFC (related to plot p8)
 cor_shortening <- cor.test(shortening_genes$lost_diff, shortening_genes$LFC, method = "spearman")
 print(cor_shortening)
 # ------------------------------------------------------------------------------
@@ -791,7 +773,7 @@ top10_upregulated <- merged_gene_data_final %>%
   mutate(binding_site_loss = abs(sum_diff))  # Convert to positive values
 
 # Create a scatter plot of binding site loss vs. mRNA LFC for these top 10 genes.
-p10 <- ggplot(top10_upregulated, aes(x = binding_site_loss, y = LFC)) +
+p9 <- ggplot(top10_upregulated, aes(x = binding_site_loss, y = LFC)) +
   geom_point(alpha = 0.7, size = 3, color = "darkgreen") +
   geom_smooth(method = "lm", se = TRUE, color = "blue") +
   labs(title = "Binding Site Loss vs mRNA LFC",
@@ -800,11 +782,11 @@ p10 <- ggplot(top10_upregulated, aes(x = binding_site_loss, y = LFC)) +
        y = "mRNA log2 Fold Change\n(<0: downregulation     >0: upregulation)") +
   theme_minimal(base_size = 18)
 
-print(p10)
-ggsave("p10_TDP_6m.svg", plot = p10, width = 8, height = 6, device = "svg")
+print(p9)
+ggsave("p9_TDP_6m.svg", plot = p9, width = 8, height = 6, device = "svg")
 
 # ------------------------------------------------------------------------------
-# Compute Spearman correlation for these top 10 genes (related to plot p10)
+# Compute Spearman correlation for these top 10 genes (related to plot p9)
 cor_top10 <- cor.test(top10_upregulated$binding_site_loss, top10_upregulated$LFC, method = "spearman")
 print(cor_top10)
 # ------------------------------------------------------------------------------
@@ -815,7 +797,7 @@ top10_downregulated <- merged_gene_data_final %>%
   slice_min(order_by = LFC, n = 10)
 
 # Create a scatter plot of net binding site gain (sum_diff) vs. mRNA LFC for these genes.
-p11 <- ggplot(top10_downregulated, aes(x = sum_diff, y = LFC)) +
+p10 <- ggplot(top10_downregulated, aes(x = sum_diff, y = LFC)) +
   geom_point(alpha = 0.7, size = 3, color = "darkred") +
   geom_smooth(method = "lm", se = TRUE, color = "blue") +
   labs(title = "Binding Site Gain vs mRNA LFC",
@@ -824,11 +806,11 @@ p11 <- ggplot(top10_downregulated, aes(x = sum_diff, y = LFC)) +
        y = "mRNA log2 Fold Change\n(<0: downregulation     >0: upregulation)") +
   theme_minimal(base_size = 18)
 
-print(p11)
-ggsave("p11_TDP_6m.svg", plot = p11, width = 8, height = 6, device = "svg")
+print(p10)
+ggsave("p10_TDP_6m.svg", plot = p10, width = 8, height = 6, device = "svg")
 
 # ------------------------------------------------------------------------------
-# Compute Spearman correlation for these top 10 genes (related to plot p11)
+# Compute Spearman correlation for these top 10 genes (related to plot p10)
 cor_top10_down <- cor.test(top10_downregulated$sum_diff, top10_downregulated$LFC, method = "spearman")
 print(cor_top10_down)
 # ------------------------------------------------------------------------------
@@ -868,7 +850,7 @@ top10_upregulated2 <- merged_gene_data_dys %>%
   mutate(binding_site_loss = abs(sum_diff))  # Convert to positive values
 
 # 6. Create the scatter plot (using sum_diff as binding site loss).
-p12 <- ggplot(top10_upregulated2, aes(x = sum_diff, y = LFC)) +
+p11 <- ggplot(top10_upregulated2, aes(x = sum_diff, y = LFC)) +
   geom_point(alpha = 0.7, size = 3, color = "darkgreen") +
   geom_smooth(method = "lm", se = TRUE, color = "blue") +
   labs(title = "Binding Site Loss vs. mRNA LFC",
@@ -877,10 +859,10 @@ p12 <- ggplot(top10_upregulated2, aes(x = sum_diff, y = LFC)) +
        y = "mRNA log2 Fold Change\n(<0: downregulation     >0: upregulation)") +
   theme_minimal(base_size = 18)
 
-print(p12)
+print(p11)
 
 # ------------------------------------------------------------------------------
-# Compute the Spearman correlation (related to plot p12)
+# Compute the Spearman correlation (related to plot p11)
 cor_top10_up2 <- cor.test(top10_upregulated2$sum_diff, top10_upregulated2$LFC, method = "spearman")
 print(cor_top10_up2)
 # ------------------------------------------------------------------------------
@@ -915,7 +897,7 @@ top10_downregulated2 <- merged_gene_data_dys2 %>%
   slice_min(order_by = LFC, n = 10)
 
 # 6. Create the scatter plot (using sum_diff as binding site gain) - !!!!!!!!!!!!!!!THIS PLOT DOES NOT WORK BECAUSE THERE ARE 0 ELIGIBLE GENES!!!!!!!!!!!!
-p13 <- ggplot(top10_downregulated2, aes(x = sum_diff, y = LFC)) +
+p12 <- ggplot(top10_downregulated2, aes(x = sum_diff, y = LFC)) +
   geom_point(alpha = 0.7, size = 3, color = "darkred") +
   geom_smooth(method = "lm", se = TRUE, color = "blue") +
   labs(title = "Binding Site Gain vs mRNA LFC",
@@ -924,10 +906,10 @@ p13 <- ggplot(top10_downregulated2, aes(x = sum_diff, y = LFC)) +
        y = "mRNA log2 Fold Change\n(<0: downregulation     >0: upregulation)") +
   theme_minimal(base_size = 18)
 
-print(p13)
+print(p12)
 
 # ------------------------------------------------------------------------------
-# Compute the Spearman correlation (related to plot p13) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! THIS WILL NOT WORK BECAUSE OF 0 ELIGIBLE GENES!!!!!!!!!!!!!
+# Compute the Spearman correlation (related to plot p12) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! THIS WILL NOT WORK BECAUSE OF 0 ELIGIBLE GENES!!!!!!!!!!!!!
 cor_top10_down2 <- cor.test(top10_downregulated2$sum_diff, top10_downregulated2$LFC, method = "spearman")
 print(cor_top10_down2)
 # ------------------------------------------------------------------------------
