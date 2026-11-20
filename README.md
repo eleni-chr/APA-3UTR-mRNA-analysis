@@ -29,7 +29,7 @@ Download the study-specific inputs from the associated dataset publication when 
 
 | Input files | Used by |
 | --- | --- |
-| T2.bam, T3.bam, T4.bam, N1.bam, N2.bam, N3.bam; T7.bam, T8.bam, T15.bam, N8.bam, N9.bam, N10.bam; T11.bam, T13.bam, T21.bam, N15.bam, N16.bam, N17.bam | The three APAlyzer scripts. These are 18 study BAM files in total (about 28.9 GiB). |
+| T2.bam, T3.bam, T4.bam, N1.bam, N2.bam, N3.bam; T7.bam, T8.bam, T15.bam, N8.bam, N9.bam, N10.bam; T11.bam, T13.bam, T21.bam, N15.bam, N16.bam, N17.bam | The three APAlyzer scripts. These are 18 study BAM files in total. |
 | DESeq2_mRNA_TDP_6m.csv, DESeq2_mRNA_TDP_9m.csv, DESeq2_mRNA_TDP_12m.csv; DESeq2_miRNA_TDP_6m.csv, DESeq2_miRNA_TDP_9m.csv, DESeq2_miRNA_TDP_12m.csv | Post-APAlyzer and volcano plot scripts. |
 | PANTHER_GO-Slim_DESeq2_mRNA_6m.xlsx, PANTHER_GO-Slim_DESeq2_mRNA_9m.xlsx, PANTHER_GO-Slim_miRPath_miRNA_6m.xlsx, PANTHER_GO-Slim_miRPath_miRNA_9m.xlsx, PANTHER_GO-Slim_miRPath_miRNA_12m.xlsx, PANTHER_GO-Slim_APA_mRNA_6m.xlsx | GO_results_visualisation.R. |
 
