@@ -27,11 +27,11 @@ The manuscript describes FASTQ quality control, trimming, alignment, counting, d
 
 Download the study-specific inputs from the associated dataset publication when it becomes available. Place the required files directly alongside the R scripts, keeping the filenames below. These study files are not included in the code repository; they are intended to become publicly available upon publication of the manuscript through a separate dataset publication. The dataset DOI is forthcoming.
 
-| Input files | Used by |
-| --- | --- |
-| T2.bam, T3.bam, T4.bam, N1.bam, N2.bam, N3.bam; T7.bam, T8.bam, T15.bam, N8.bam, N9.bam, N10.bam; T11.bam, T13.bam, T21.bam, N15.bam, N16.bam, N17.bam | The three APAlyzer scripts. These are 18 study BAM files in total. |
-| DESeq2_mRNA_TDP_6m.csv, DESeq2_mRNA_TDP_9m.csv, DESeq2_mRNA_TDP_12m.csv; DESeq2_miRNA_TDP_6m.csv, DESeq2_miRNA_TDP_9m.csv, DESeq2_miRNA_TDP_12m.csv | Post-APAlyzer and volcano plot scripts. |
-| PANTHER_GO-Slim_DESeq2_mRNA_6m.xlsx, PANTHER_GO-Slim_DESeq2_mRNA_9m.xlsx, PANTHER_GO-Slim_miRPath_miRNA_6m.xlsx, PANTHER_GO-Slim_miRPath_miRNA_9m.xlsx, PANTHER_GO-Slim_miRPath_miRNA_12m.xlsx, PANTHER_GO-Slim_APA_mRNA_6m.xlsx | GO_results_visualisation.R. |
+| Input files | Used by | Source |
+| --- | --- | --- |
+| T2.bam, T3.bam, T4.bam, N1.bam, N2.bam, N3.bam; T7.bam, T8.bam, T15.bam, N8.bam, N9.bam, N10.bam; T11.bam, T13.bam, T21.bam, N15.bam, N16.bam, N17.bam | The three APAlyzer scripts. These are 18 study BAM files in total. | These files can be downloaded from ENA accession PRJEB96243 (inaccessible until publication of the manuscript) |
+| DESeq2_mRNA_TDP_6m.csv, DESeq2_mRNA_TDP_9m.csv, DESeq2_mRNA_TDP_12m.csv; DESeq2_miRNA_TDP_6m.csv, DESeq2_miRNA_TDP_9m.csv, DESeq2_miRNA_TDP_12m.csv | Post-APAlyzer and volcano plot scripts. | These are part of the dataset with DOI: 10.5281/zenodo.24399504 (inaccessible until publication of the manuscript) |
+| PANTHER_GO-Slim_DESeq2_mRNA_6m.xlsx, PANTHER_GO-Slim_DESeq2_mRNA_9m.xlsx, PANTHER_GO-Slim_miRPath_miRNA_6m.xlsx, PANTHER_GO-Slim_miRPath_miRNA_9m.xlsx, PANTHER_GO-Slim_miRPath_miRNA_12m.xlsx, PANTHER_GO-Slim_APA_mRNA_6m.xlsx | GO_results_visualisation.R. | These are part of the dataset with DOI: 10.5281/zenodo.24399504 (inaccessible until publication of the manuscript) |
 
 The post-APAlyzer scripts also require mature.fa, a miRNA FASTA file. Download it from the miRBase downloads page at https://mirbase.org/download/ and place it alongside the scripts. Follow miRBase's citation guidance when using its sequences.
 
