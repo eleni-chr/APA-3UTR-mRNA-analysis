@@ -33,7 +33,7 @@ Download the study-specific inputs from the associated dataset publication when 
 | DESeq2_mRNA_TDP_6m.csv, DESeq2_mRNA_TDP_9m.csv, DESeq2_mRNA_TDP_12m.csv; DESeq2_miRNA_TDP_6m.csv, DESeq2_miRNA_TDP_9m.csv, DESeq2_miRNA_TDP_12m.csv | Post-APAlyzer and volcano plot scripts. |
 | PANTHER_GO-Slim_DESeq2_mRNA_6m.xlsx, PANTHER_GO-Slim_DESeq2_mRNA_9m.xlsx, PANTHER_GO-Slim_miRPath_miRNA_6m.xlsx, PANTHER_GO-Slim_miRPath_miRNA_9m.xlsx, PANTHER_GO-Slim_miRPath_miRNA_12m.xlsx, PANTHER_GO-Slim_APA_mRNA_6m.xlsx | GO_results_visualisation.R. |
 
-The post-APAlyzer scripts also require mature.fa, a miRNA FASTA file. Download it from the miRBase downloads page at https://mirbase.org/download/ and place it alongside the scripts. The manuscript draft refers to the latest miRBase annotation available at the time of analysis but does not state a release number. Follow miRBase's citation guidance when using its sequences.
+The post-APAlyzer scripts also require mature.fa, a miRNA FASTA file. Download it from the miRBase downloads page at https://mirbase.org/download/ and place it alongside the scripts. Follow miRBase's citation guidance when using its sequences.
 
 The APAlyzer scripts retrieve the mm10_REF.RData PAS reference from the external RJWANGbioinfo/PAS_reference_RData GitHub repository at runtime. This reference is not included in this repository. The post-APAlyzer analyses also query online miRNA-target and Ensembl annotation resources, so internet access is required and results may reflect updated external databases.
 
